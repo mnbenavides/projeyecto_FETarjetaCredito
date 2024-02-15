@@ -5,7 +5,7 @@
         <div class="col-lg-8 offset-lg-2"> <!--La clase col-lg-8 indica que la columna ocupa 8 de las 12 unidades en anho en dispotivos grandes lg y la clase offset-lg-2 agrega un espacio de margen izquierdo de 2 unidades para centrar la columna -->
             <div class="card"> <!--la clase card agrega el estilo de tarjeta-->
                <div class="card-body"> <!--La clase card-body indica el cuerpo de la tarjeta y la clase text-center centra el contenido de la tarjetaa-->
-                <h3 class="titulo">Tarjeta de Credito</h3>
+                    <h3 class="titulo">Tarjeta de Credito</h3>
                </div> 
             </div>
         </div>
@@ -15,14 +15,25 @@
         <div class="col-lg-6"> 
             <div class="card"> 
                <div class="card-body">
-                <h5 class="titulo">Agregar tarjeta</h5>
+                    <h5 class="titulo">Agregar tarjeta</h5>
                </div> 
             </div>
         </div>
         <div class="col-lg-6"> 
             <div class="card"> 
                <div class="card-body"> 
-                <h5 class="titulo">Listado de tarjetas</h5>
+                    <h5 class="titulo">Listado de tarjetas</h5>
+                    <table class="table">
+                        <tbody>
+                            <tr *ngFor="let tarjeta of tarjetas">
+                                <td>{{tarjeta.nombre}}</td>
+                                <td>{{tarjeta.numero_tarjeta}}</td>
+                                <td>{{tarjeta.fecha_expiracion}}</td>
+                                <td><i class="fa-solid fa-pen-to-square text-info"></i></td>
+                                <td><i class="fa-solid fa-trash text-danger"></i></td>
+                            </tr>
+                        <tbody>
+                    </table>
                </div> 
             </div>
         </div>
