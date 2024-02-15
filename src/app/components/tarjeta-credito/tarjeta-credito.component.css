@@ -1,3 +1,11 @@
 .fa{
     cursor:pointer;
 }
+
+.green-icon{
+    color: #168754;
+}
+
+.red-icon{
+    color: #dc3545;
+}
