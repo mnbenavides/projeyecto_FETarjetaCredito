@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators  } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-tarjeta-credito',
@@ -13,7 +14,8 @@ export class TarjetaCreditoComponent implements OnInit {
   ];
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder,
+              private toastr: ToastrService){
     this.form = this.fb.group({
       titular:['', Validators.required],
       numero_tarjeta:['', Validators.required, Validators.maxLength(16), Validators.minLength(16)],
@@ -27,7 +29,8 @@ export class TarjetaCreditoComponent implements OnInit {
 
   }
 
-  agregarTarjeta(){
+  //Metodo que permite agregar una tarjeta con los camspo: titular, numero de tarjeta, fecha de expiracion de la tarjeat y cvv en la base de datos
+  public agregarTarjeta(){
     const TARJETA: any = {
       titular: this.form.get('titular')?.value,
       numero_tarjeta: this.form.get('numero_tarjeta')?.value,
@@ -35,7 +38,13 @@ export class TarjetaCreditoComponent implements OnInit {
       cvv: this.form.get('cvv')?.value
     };
     this.listado_tarjetas.push(TARJETA);
+    this.toastr.success('La tarjeta fue registrada con éxito', 'Tarjeta registrada');
     this.form.reset();
   }
-
+  
+  //Metodo que permite eliminar una tarjeta de la base de datos de acuerdo al indice recibido
+  public eliminarTarjeta(index:number){
+    this.listado_tarjetas.splice(index, 1);
+    this.toastr.error('La tarjeta fue eliminada con éxito', 'Tarjeta eliminada');
+  }
 }
