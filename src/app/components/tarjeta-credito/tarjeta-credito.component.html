@@ -15,9 +15,9 @@
         <div class="col-lg-6"> 
             <div class="card"> 
                <div class="card-body">
-                    <h5 class="titulo">Agregar tarjeta</h5>
+                    <h5 class="titulo"> {{accion | uppercase}} tarjeta</h5>
 
-                    <form [formGroup]="form" (ngSubmit)="agregarTarjeta()">
+                    <form [formGroup]="form" (ngSubmit)="guardarTarjeta()">
                         <div class="input-group input-group-lg mb3">
                             <span class="input-group-text">
                                 <i class="fas fa-user"
@@ -30,11 +30,11 @@
                         <div class="input-group input-group-lg mb3">
                             <span class="input-group-text">
                                 <i class="fas fa-credit-card"
-                                    [class.green-icon] ="this.form.get('numero_tarjeta')?.valid"
-                                    [class.red-icon] ="this.form.get('numero_tarjeta')?.invalid && this.form.get('numero_tarjeta')?.touched"
+                                    [class.green-icon] ="this.form.get('numeroTarjeta')?.valid"
+                                    [class.red-icon] ="this.form.get('numeroTarjeta')?.invalid && this.form.get('numeroTarjeta')?.touched"
                                 ></i>
                             </span>
-                            <input formControlName="numero_tarjeta" maxLength="16" type="text" class="form-control" placeholder="Número de tarjeta">
+                            <input formControlName="numeroTarjeta" maxLength="16" type="text" class="form-control" placeholder="Número de tarjeta">
                         </div>   
                 
                         <div class="row">
@@ -42,11 +42,11 @@
                                 <div class="input-group input-group-lg mb3">
                                     <span class="input-group-text">
                                         <i class="fas fa-calendar-alt"
-                                            [class.green-icon] ="this.form.get('fecha_expiracion')?.valid"
-                                            [class.red-icon] ="this.form.get('fecha_expiracion')?.invalid && this.form.get('fecha_expiracion')?.touched"
+                                            [class.green-icon] ="this.form.get('fechaExpiracion')?.valid"
+                                            [class.red-icon] ="this.form.get('fechaExpiracion')?.invalid && this.form.get('fechaExpiracion')?.touched"
                                         ></i>
                                     </span>
-                                    <input formControlName="fecha_expiracion"  maxLength="5" type="text" class="form-control" placeholder="MM/YY">
+                                    <input formControlName="fechaExpiracion"  maxLength="5" type="text" class="form-control" placeholder="MM/YY">
                                 </div>
                             </div>
                             <div class="col-lg-5">
@@ -78,10 +78,10 @@
                         <tbody>
                             <tr *ngFor="let tarjeta of listado_tarjetas; let i = index">
                                 <td>{{tarjeta.titular}}</td>
-                                <td>{{tarjeta.numero_tarjeta}}</td>
-                                <td>{{tarjeta.fecha_expiracion}}</td>
-                                <td><i class="fa-solid fa-pen-to-square text-info"></i></td>
-                                <td><i  (click)="eliminarTarjeta(i)" class="fa-solid fa-trash text-danger"></i></td>
+                                <td>{{tarjeta.numeroTarjeta}}</td>
+                                <td>{{tarjeta.fechaExpiracion}}</td>
+                                <td><i (click)="editarTarjeta(tarjeta)" class="fa-solid fa-pen-to-square text-info"></i></td>
+                                <td><i  (click)="eliminarTarjeta(tarjeta.id)" class="fa-solid fa-trash text-danger"></i></td>
                             </tr>
                         <tbody>
                     </table>
